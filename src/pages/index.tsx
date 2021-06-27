@@ -1,7 +1,7 @@
 export default function Home(): React.ReactElement {
 	return (
-		<div>
-			<h1>Hello Brow</h1>
+		<div className="container">
+			<h1>Hello</h1>
 		</div>
 	);
 }
