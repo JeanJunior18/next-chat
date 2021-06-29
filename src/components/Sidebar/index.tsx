@@ -8,7 +8,8 @@ const Sidebar: React.FC = () => {
 		},
 		{
 			title: 'Atendimentos',
-			icon: 'chat',
+			icon: 'record_voice_over',
+			isActive: true,
 		},
 		{
 			title: 'Agenda',
@@ -21,9 +22,15 @@ const Sidebar: React.FC = () => {
 	];
 	return (
 		<aside className="sidebar">
-			{items.map((item) => (
-				<SidebarItem key={item.title} {...item} />
-			))}
+			<div className="menu">
+				<SidebarItem title="Menu" icon="menu" />
+			</div>
+
+			<div className="options">
+				{items.map((item) => (
+					<SidebarItem key={item.title} {...item} />
+				))}
+			</div>
 		</aside>
 	);
 };

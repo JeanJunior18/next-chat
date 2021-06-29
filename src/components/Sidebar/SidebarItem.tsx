@@ -6,7 +6,7 @@ interface SidebarItemProps {
 
 const SidebarItem: React.FC<SidebarItemProps> = (props) => {
 	return (
-		<div>
+		<div className={`item ${(props.isActive && 'active') || ''}`}>
 			<span className="material-icons">{props.icon}</span>
 			{/* <span>{props.title}</span> */}
 		</div>

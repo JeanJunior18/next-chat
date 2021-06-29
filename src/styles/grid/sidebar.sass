@@ -1,7 +1,32 @@
 .sidebar
   grid-area: SB
+  position: relative
 
   display: flex
   flex-direction: column
+  gap: 2rem
   align-items: center
-  background: red
+  justify-content: center
+  background: #fff
+
+  border-right: 1px solid
+
+  .item
+    border-radius: 5px
+    padding: .6rem
+    margin: 5px
+
+    display: grid
+    place-items: center
+    cursor: pointer
+    
+    color: #9DA8B9
+
+    &.active
+      background: #ECECEE
+      color: #6D67DA
+
+  .menu
+    position: absolute
+    top: 1rem
+
