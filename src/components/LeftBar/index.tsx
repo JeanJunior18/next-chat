@@ -26,6 +26,15 @@ const LeftBar: React.FC = () => {
 	];
 	return (
 		<div className="left-bar">
+			<div className="search">
+				<span className="material-icons">search</span>
+				<input type="text" placeholder="Pesquise por um atendimento" />
+			</div>
+
+			<div className="tabs-chat">
+				<span className="tab">Ativos</span>
+				<span className="tab">Aguardando</span>
+			</div>
 			{chats.map((chat) => (
 				<ChatItem key={chat.id} {...chat} />
 			))}
