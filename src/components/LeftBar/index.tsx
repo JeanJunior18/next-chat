@@ -13,8 +13,7 @@ const LeftBar: React.FC = () => {
 			client: 'Jean Junior',
 			timeago: 'Hoje 10:34',
 			lastMessage: 'Negócio Fechado',
-			avatar:
-				'https://fastzap.s3.sa-east-1.amazonaws.com/media/avatar/myProfile.jpg',
+			avatar: 'https://avatars.githubusercontent.com/u/54405723?v=4',
 			isActive: true,
 		},
 		{
