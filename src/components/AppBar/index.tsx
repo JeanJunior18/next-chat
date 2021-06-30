@@ -1,9 +1,5 @@
 const AppBar: React.FC = () => {
-	return (
-		<div className="app-bar">
-			<p>App Bar</p>
-		</div>
-	);
+	return <div className="app-bar"></div>;
 };
 
 export default AppBar;

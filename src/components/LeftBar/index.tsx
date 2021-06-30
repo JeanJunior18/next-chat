@@ -26,6 +26,11 @@ const LeftBar: React.FC = () => {
 	];
 	return (
 		<div className="left-bar">
+			<div className="brand">
+				<img src="assets/icon-nextjs.png" alt="Next Icon" />
+				<span className="name">Next Chat</span>
+			</div>
+
 			<div className="search">
 				<span className="material-icons">search</span>
 				<input type="text" placeholder="Pesquise por um atendimento" />
