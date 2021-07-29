@@ -5,19 +5,22 @@ const Sidebar: React.FC = () => {
 		{
 			title: 'Chat',
 			icon: 'chat',
+			path: '/',
 		},
-		{
-			title: 'Atendimentos',
-			icon: 'record_voice_over',
-			isActive: true,
-		},
-		{
-			title: 'Agenda',
-			icon: 'today',
-		},
+		// {
+		// 	title: 'Atendimentos',
+		// 	icon: 'record_voice_over',
+		// 	path: '/atendimentos',
+		// },
+		// {
+		// 	title: 'Agenda',
+		// 	icon: 'today',
+		// 	path: '/agenda',
+		// },
 		{
 			title: 'Clientes',
 			icon: 'people',
+			path: '/clientes',
 		},
 	];
 	return (
