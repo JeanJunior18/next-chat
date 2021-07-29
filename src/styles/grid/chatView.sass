@@ -1,4 +1,42 @@
 .chat-view
   display: flex
   flex-direction: column
-  background: orange
+  background: #F3F6FB
+  height: calc(100vh - 80px)
+  overflow: auto
+
+.message
+  flex: none
+  height: 220px
+  max-width: 60%
+
+  .user
+    display: flex
+    align-items: center
+    .avatar
+      margin: 0 15px
+      border-radius: 50%
+      width: 40px
+  .content
+    margin: 10px 25px 0
+    background: #fff
+    color: #333
+    padding: 10px
+    border-radius: 8px
+
+  .caption
+    margin: 2px 25px
+    text-align: right
+
+  &.from-me
+    align-self: flex-end
+
+    .user
+      flex-direction: row-reverse
+    .content
+      margin: 10px 25px 0
+      background:#1A233B
+
+      color: #F3F6FB
+      padding: 10px
+      border-radius: 10px
