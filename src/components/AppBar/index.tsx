@@ -1,6 +1,10 @@
 const AppBar: React.FC = () => {
 	return (
 		<div className="app-bar">
+			<div className="brand">
+				<img src="assets/icon-nextjs.png" alt="Next Icon" />
+				<span className="name">Next Chat</span>
+			</div>
 			<div className="client">
 				<img
 					className="avatar"
