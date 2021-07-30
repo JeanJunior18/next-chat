@@ -7,6 +7,7 @@ import '../styles/grid/appArea.sass';
 import '../styles/grid/leftBar.sass';
 import '../styles/grid/chatView.sass';
 import '../styles/grid/rightBar.sass';
+import '../styles/login.sass';
 import Head from 'next/head';
 
 import { AuthContextProvider } from '../context/authContext';
@@ -22,9 +23,11 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
 				/>
 			</Head>
 
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
+			<div style={{ position: 'relative' }}>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</div>
 		</AuthContextProvider>
 	);
 }

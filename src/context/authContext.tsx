@@ -1,15 +1,16 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { auth, firebase } from '../services/firebase';
 
-type User = {
+type UserProps = {
 	id: string;
 	name: string;
 	avatar: string;
 };
 
 type AuthContexTypes = {
-	user: User | undefined;
+	user: UserProps | undefined;
 	sighWithGoogle: () => Promise<void>;
+	signOutGoogle: () => Promise<void>;
 };
 
 type AuthContextProvider = {
@@ -19,10 +20,12 @@ type AuthContextProvider = {
 export const AuthContext = createContext({} as AuthContexTypes);
 
 export function AuthContextProvider({ children }: AuthContextProvider) {
-	const [user, setUser] = useState<User>();
+	const [user, setUser] = useState<UserProps>();
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
+			if (!user) return;
+
 			const { displayName, photoURL, uid } = user;
 
 			if (!displayName || !photoURL) {
@@ -61,8 +64,15 @@ export function AuthContextProvider({ children }: AuthContextProvider) {
 		}
 	};
 
+	const signOutGoogle = async () => {
+		const logout = await auth.signOut();
+		console.log(logout);
+
+		setUser(undefined);
+	};
+
 	return (
-		<AuthContext.Provider value={{ user, sighWithGoogle }}>
+		<AuthContext.Provider value={{ user, sighWithGoogle, signOutGoogle }}>
 			{children}
 		</AuthContext.Provider>
 	);

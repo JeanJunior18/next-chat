@@ -1,6 +1,8 @@
+import { useAuth } from '../../hooks/useAuth';
 import SidebarItem from './SidebarItem';
 
 const Sidebar: React.FC = () => {
+	const { signOutGoogle } = useAuth();
 	const items = [
 		{
 			title: 'Chat',
@@ -33,6 +35,10 @@ const Sidebar: React.FC = () => {
 				{items.map((item) => (
 					<SidebarItem key={item.title} {...item} />
 				))}
+			</div>
+
+			<div className="logout" onClick={signOutGoogle}>
+				<SidebarItem title="Menu" icon="logout" />
 			</div>
 		</aside>
 	);
