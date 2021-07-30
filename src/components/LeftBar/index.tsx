@@ -1,28 +1,18 @@
+import { useEffect, useState } from 'react';
+import { database } from '../../services/firebase';
 import ChatItem from './ChatItem';
 
 const LeftBar: React.FC = () => {
-	const chats = [
-		{
-			id: 1,
-			client: 'Cliente 1',
-			timeago: 'Hoje 12:45',
-			lastMessage: 'Bom dia Sr',
-		},
-		{
-			id: 2,
-			client: 'Jean Junior',
-			timeago: 'Hoje 10:34',
-			lastMessage: 'Negócio Fechado',
-			avatar: 'https://avatars.githubusercontent.com/u/54405723?v=4',
-			isActive: true,
-		},
-		{
-			id: 3,
-			client: 'Cliente 3',
-			timeago: 'Hoje 15:07',
-			lastMessage: 'Aguardo retorno',
-		},
-	];
+	const [chats, setChats] = useState([]);
+
+	useEffect(() => {
+		database.ref('wpprodev/tokens/jclgjunior/chats').on('value', (snapshot) => {
+			const chatsList = Object.values(snapshot.val());
+			console.log(chatsList);
+			setChats(chatsList);
+		});
+	}, []);
+
 	return (
 		<div className="left-bar">
 			<div className="search">
@@ -34,9 +24,11 @@ const LeftBar: React.FC = () => {
 				<span className="tab">Ativos</span>
 				<span className="tab">Aguardando</span>
 			</div>
-			{chats.map((chat) => (
-				<ChatItem key={chat.id} {...chat} />
-			))}
+			<div className="chat-list">
+				{chats.map((chat) => (
+					<ChatItem key={chat.jid} {...chat} />
+				))}
+			</div>
 		</div>
 	);
 };

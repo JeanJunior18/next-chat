@@ -5,6 +5,7 @@
   flex-direction: column
   align-items: center
   background: #fff
+  height: calc(100vh - 80px)
 
   .search
     width: 100%
@@ -23,6 +24,7 @@
       outline: none
 
   .tabs-chat
+    flex: none
     width: 100%
     height: 3rem
     border-bottom: 1px solid
@@ -36,7 +38,10 @@
       width: 100%
       cursor: pointer
 
+  .chat-list
+    overflow-y: auto
   .chat-item
+    flex: none
     position: relative
     height: 5rem
     width: 100% 

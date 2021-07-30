@@ -1,6 +1,8 @@
 export interface ChatItem {
 	client: string;
 	avatar?: string;
+	name: string;
+	jid: string;
 	lastMessage?: string;
 	timeago?: string;
 	isActive?: boolean;
@@ -18,8 +20,8 @@ const ChatItem: React.FC<ChatItem> = (props) => {
 				className="avatar"
 			/>
 			<div className="info">
-				<span className="client">{props.client}</span>
-				<p className="last-message">{props.lastMessage}</p>
+				<span className="client">{props.name}</span>
+				<p className="last-message">{props.jid.replace(/[^0-9]+/g, '')}</p>
 			</div>
 			<span className="timeago">{props.timeago}</span>
 		</div>
