@@ -1,18 +1,8 @@
-import { useEffect, useState } from 'react';
-import { database } from '../../services/firebase';
+import { useChat } from '../../hooks/useChat';
 import ChatItem from './ChatItem';
 
 const LeftBar: React.FC = () => {
-	const [chats, setChats] = useState([]);
-
-	useEffect(() => {
-		database.ref('wpprodev/tokens/jclgjunior/chats').on('value', (snapshot) => {
-			const chatsList = Object.values(snapshot.val());
-			console.log(chatsList);
-			setChats(chatsList);
-		});
-	}, []);
-
+	const { chats } = useChat();
 	return (
 		<div className="left-bar">
 			<div className="search">
