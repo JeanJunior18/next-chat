@@ -9,11 +9,12 @@ import '../styles/grid/chatView.sass';
 import '../styles/grid/rightBar.sass';
 import Head from 'next/head';
 
+import { AuthContextProvider } from '../context/authContext';
 import Layout from '../layout/chat';
 
 function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
 	return (
-		<>
+		<AuthContextProvider>
 			<Head>
 				<link
 					href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -24,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
-		</>
+		</AuthContextProvider>
 	);
 }
 export default MyApp;
