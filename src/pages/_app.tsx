@@ -11,23 +11,24 @@ import '../styles/login.sass';
 import Head from 'next/head';
 
 import { AuthContextProvider } from '../context/authContext';
+import { ChatContextProvider } from '../context/chatContext';
 import Layout from '../layout/chat';
 
 function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
 	return (
 		<AuthContextProvider>
-			<Head>
-				<link
-					href="https://fonts.googleapis.com/icon?family=Material+Icons"
-					rel="stylesheet"
-				/>
-			</Head>
+			<ChatContextProvider>
+				<Head>
+					<link
+						href="https://fonts.googleapis.com/icon?family=Material+Icons"
+						rel="stylesheet"
+					/>
+				</Head>
 
-			<div style={{ position: 'relative' }}>
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
-			</div>
+			</ChatContextProvider>
 		</AuthContextProvider>
 	);
 }

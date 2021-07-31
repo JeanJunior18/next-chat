@@ -24,6 +24,11 @@ const Sidebar: React.FC = () => {
 			icon: 'people',
 			path: '/clientes',
 		},
+		{
+			title: 'Configurações',
+			icon: 'settings',
+			path: '/configuracoes',
+		},
 	];
 	return (
 		<aside className="sidebar">

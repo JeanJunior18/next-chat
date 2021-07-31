@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { useChat } from '../../hooks/useChat';
 import Message from './Message';
 
 const ChatView: React.FC = () => {
 	const bottomChatView = useRef<HTMLDivElement | null>(null);
+	const { currentChat } = useChat();
 
 	const scrollToBottom = () => {
 		bottomChatView.current?.scrollIntoView({ behavior: 'smooth' });
@@ -12,24 +14,17 @@ const ChatView: React.FC = () => {
 		scrollToBottom();
 	}, []);
 
+	useEffect(() => {
+		console.warn('EAI');
+	}, [currentChat]);
+
+	if (!currentChat?.messages) return <span>asd</span>;
+
 	return (
 		<div className="chat-view">
-			<Message />
-			<Message />
-			<Message />
-			<Message />
-			<Message />
-			<Message />
-			<Message />
-			<Message fromMe />
-			<Message />
-			<Message />
-			<Message />
-			<Message fromMe />
-			<Message fromMe />
-			<Message />
-			<Message fromMe />
-			<Message />
+			{Object.values(currentChat?.messages).map((message) => (
+				<Message {...message} {...currentChat} key={message.key.id} />
+			))}
 
 			<div ref={bottomChatView} />
 		</div>

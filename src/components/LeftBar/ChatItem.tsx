@@ -1,3 +1,5 @@
+import { useChat } from '../../hooks/useChat';
+
 export interface ChatItem {
 	avatar?: string;
 	name?: string;
@@ -7,8 +9,14 @@ export interface ChatItem {
 }
 
 const ChatItem: React.FC<ChatItem> = (props) => {
+	const { selectChat } = useChat();
 	return (
-		<div className={`chat-item ${(props.isActive && 'active') || ''}`}>
+		<div
+			className={`chat-item ${(props.isActive && 'active') || ''}`}
+			onClick={() => {
+				selectChat(props.jid);
+			}}
+		>
 			<img
 				src={
 					props.avatar ||

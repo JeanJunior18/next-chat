@@ -1,26 +1,32 @@
 interface MessageProps {
 	fromMe?: boolean;
+	message?: string;
+	name?: string;
+	avatar?: string;
+	messageTimestamp: string;
+	status: string;
 }
 
-const Message: React.FC<MessageProps> = ({ fromMe }) => {
+const Message: React.FC<MessageProps> = ({
+	fromMe,
+	message,
+	avatar,
+	name,
+	messageTimestamp,
+	status,
+	...props
+}) => {
 	return (
 		<div className={`message ${fromMe ? 'from-me' : ''}`}>
 			<div className="user">
-				<img
-					className="avatar"
-					src="https://avatars.githubusercontent.com/u/54405723?v=4"
-				/>
-				<span className="name">Jean Junior</span>
+				<img className="avatar" src={avatar} />
+				<span className="name">{name}</span>
 			</div>
 
-			<div className="content">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ducimus
-				accusantium, nihil dignissimos sint officiis delectus laborum cumque!
-				Doloremque quidem modi impedit veritatis iste accusamus quam laboriosam
-				minima nostrum eius.
-			</div>
+			<div className="content">{'message'}</div>
 
-			<div className="caption">4m ago</div>
+			<div className="caption">{messageTimestamp}</div>
+			<div className="caption">{status}</div>
 		</div>
 	);
 };
