@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "crypto": "^1.0.1",
     "firebase": "^8.8.1",
+    "futoin-hkdf": "^1.4.2",
+    "got": "^11.8.2",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "sass": "^1.35.1"
+    "sass": "^1.35.1",
+    "stream": "^0.0.2"
   },
   "devDependencies": {
     "@types/react": "17.0.11",

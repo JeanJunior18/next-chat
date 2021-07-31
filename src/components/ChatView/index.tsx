@@ -23,7 +23,7 @@ const ChatView: React.FC = () => {
 	return (
 		<div className="chat-view">
 			{Object.values(currentChat?.messages).map((message) => (
-				<Message {...message} {...currentChat} key={message.key.id} />
+				<Message key={message.key.id} user={currentChat} id={message.key.id} />
 			))}
 
 			<div ref={bottomChatView} />

@@ -1,25 +1,15 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { MessageProps } from '../components/ChatView/Message';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
-type MessageProps = {
-	key: {
-		fromMe: boolean;
-		id: string;
-		remoteId: string;
-		message: Record<string, string>;
-		messageTimestamp: string;
-		status: string;
-	};
-};
-
-type ChatProps = {
+export interface ChatProps {
 	avatar: string;
 	jid: string;
 	name?: string;
 	t: string;
 	messages: Record<string, MessageProps>;
-};
+}
 
 type ChatContext = {
 	chats: ChatProps[];
