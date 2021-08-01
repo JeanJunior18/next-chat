@@ -22,11 +22,26 @@ const ChatView: React.FC = () => {
 
 	return (
 		<div className="chat-view">
-			{Object.values(currentChat?.messages).map((message) => (
-				<Message key={message.key.id} user={currentChat} id={message.key.id} />
-			))}
+			<div className="list-messages">
+				{Object.values(currentChat?.messages).map((message) => (
+					<Message
+						key={message.key.id}
+						user={currentChat}
+						id={message.key.id}
+					/>
+				))}
 
-			<div ref={bottomChatView} />
+				<div ref={bottomChatView} />
+			</div>
+
+			<div className="input-area">
+				{/* <input type="text" placeholder="Digite uma mensagem" /> */}
+				<textarea placeholder="Digite uma mensagem"></textarea>
+
+				<div className="send-button">
+					<span className="material-icons">send</span>
+				</div>
+			</div>
 		</div>
 	);
 };

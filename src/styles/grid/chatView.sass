@@ -3,7 +3,36 @@
   flex-direction: column
   background: #F3F6FB
   height: calc(100vh - 80px)
+
+.list-messages
+  height: calc(100vh - 150px)
   overflow: auto
+  // border: 1px solid green
+
+.input-area
+  // border: 1px solid
+  display: flex
+  align-items: center
+  margin: 20px
+  padding: 0 10px
+  border-radius: 8px
+  background: #fff
+  min-height: 60px
+
+  textarea
+    outline: none
+    border: none
+    height: 80%
+    width: 100%
+
+  .send-button
+    border-radius: 8px
+    background: green
+    color: #fff
+    height: 80%
+    width: 50px
+    display: grid
+    place-items: center
 
 .message
   flex: none
