@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { ChatProps } from '../../context/chatContext';
-import { downloadMediaMessage } from '../../utils/decriptMediaMessages';
+import { MessageProps } from './Message';
 
-interface IImageMessage {
+export interface IImageMessage {
 	/** ImageMessage url */
 	url?: string | null;
 
@@ -80,15 +79,12 @@ interface IImageMessage {
 	thumbnailEncSha256?: Uint8Array | null;
 }
 
-interface ImageMessageProps extends ChatProps {
-	message: Record<string, IImageMessage>;
-}
-
-const ImageMessage: React.FC<ImageMessageProps> = (data) => {
+const ImageMessage: React.FC<{ data: MessageProps }> = ({ data }) => {
 	const [image, setImage] = useState<Uint8Array | undefined | null>();
 	const [imageData, setImageData] = useState<IImageMessage | undefined>();
 	useEffect(() => {
 		console.log(data);
+		if (!data.message) return;
 		const [[, imageData]] = Object.entries(data.message);
 		setImageData(imageData);
 		setImage(imageData.jpegThumbnail);
@@ -97,7 +93,7 @@ const ImageMessage: React.FC<ImageMessageProps> = (data) => {
 
 	const decodeImage = async () => {
 		axios
-			.post('/api/decodeImage', { message: data })
+			.post('/api/decodeImage', { data })
 			.then((res) => setImage(res.data.base64Image))
 			.catch(() => console.log());
 	};

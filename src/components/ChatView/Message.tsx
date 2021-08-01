@@ -1,8 +1,8 @@
 import { ChatProps } from '../../context/chatContext';
-import ImageMessage from './ImageMessage';
+import ImageMessage, { IImageMessage } from './ImageMessage';
 
 export interface MessageProps {
-	message?: string;
+	message?: MessageInsideProps;
 	name?: string;
 	avatar?: string;
 	messageTimestamp: string;
@@ -14,20 +14,24 @@ export interface MessageProps {
 	};
 }
 
+interface MessageInsideProps {
+	imageMessage?: IImageMessage;
+	conversation?: string;
+	extendedTextMessage?: { text: string };
+}
 interface MessageComponentProps {
 	user: ChatProps;
 	id: string;
 }
 
 const Message: React.FC<MessageComponentProps> = ({ user, id }) => {
-	const viewMessage = (msg: Record<string, any>) => {
+	const viewMessage = (msg: MessageProps) => {
 		try {
-			const [[typeMessage, data]] = Object.entries(msg.message);
-			if (typeMessage === 'conversation') return data;
-			if (typeMessage === 'extendedTextMessage') return data;
-			if (typeMessage === 'imageMessage') return <ImageMessage {...msg} />;
-			if (typeMessage === 'stickerMessage') return <ImageMessage {...msg} />;
-			if (typeMessage === 'extendedTextMessage') return data;
+			if (!msg.message) throw new Error('Invalid message');
+			if (msg.message.conversation) return msg.message.conversation;
+			if (msg.message.extendedTextMessage)
+				return msg.message.extendedTextMessage?.text;
+			if (msg.message.imageMessage) return <ImageMessage data={msg} />;
 			return JSON.stringify(msg);
 		} catch (e) {
 			console.log(e);
@@ -38,7 +42,9 @@ const Message: React.FC<MessageComponentProps> = ({ user, id }) => {
 	if (!user) return <div>Nulll</div>;
 
 	return (
-		<div className={`message ${user.key?.fromMe ? 'from-me' : ''}`}>
+		<div
+			className={`message ${user.messages[id]?.key.fromMe ? 'from-me' : ''}`}
+		>
 			<div className="user">
 				<img className="avatar" src={user.avatar} />
 				<span className="name">{user.name}</span>

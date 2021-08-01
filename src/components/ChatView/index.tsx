@@ -11,20 +11,21 @@ const ChatView: React.FC = () => {
 	const { user } = useAuth();
 
 	const scrollToBottom = () => {
-		bottomChatView.current?.scrollIntoView({ behavior: 'smooth' });
+		bottomChatView.current?.scrollIntoView({});
 	};
 
 	useEffect(() => {
 		scrollToBottom();
-	}, []);
+	}, [currentChat]);
 
 	const sendMessage = () => {
+		if (!message.trim()) return;
 		api()
 			.post('/api/v1/app/send-message', {
 				token: user?.id,
 				type: 'conversation',
 				number: currentChat?.jid.replace(/@.*/, ''),
-				message,
+				message: message.trim(),
 			})
 			.catch((err) => console.error(err.response?.data?.error || err.message))
 			.finally(() => setMessage(''));
@@ -35,13 +36,15 @@ const ChatView: React.FC = () => {
 	return (
 		<div className="chat-view">
 			<div className="list-messages">
-				{Object.values(currentChat?.messages).map((message) => (
-					<Message
-						key={message.key.id}
-						user={currentChat}
-						id={message.key.id}
-					/>
-				))}
+				{Object.values(currentChat?.messages)
+					.reverse()
+					.map((message) => (
+						<Message
+							key={message.key.id}
+							user={currentChat}
+							id={message.key.id}
+						/>
+					))}
 				<div ref={bottomChatView} />
 			</div>
 
@@ -51,7 +54,7 @@ const ChatView: React.FC = () => {
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 					onKeyPress={(e) => {
-						e.key === 'Enter' && sendMessage();
+						e.key === 'Enter' && !e.shiftKey && sendMessage();
 					}}
 				></textarea>
 

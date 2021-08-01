@@ -54,6 +54,10 @@ export function ChatContextProvider({ children }: ChatContextProvider) {
 			if (!snapshot.val()) return createToken();
 			const listChats: ChatProps[] = Object.values(snapshot.val());
 			setChats(listChats);
+			const currentChatUpdate = listChats.find(
+				(chat) => chat.jid === currentChat?.jid
+			);
+			currentChatUpdate && setCurrentChat(currentChatUpdate);
 		});
 	}, [user?.id]);
 

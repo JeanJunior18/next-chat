@@ -162,10 +162,9 @@ export default async function handler(
 	res: NextApiResponse<Data>
 ) {
 	if (req.method === 'POST') {
-		const buffer = await downloadMediaMessage(req.body.message).catch(
-			() => null
-		);
+		console.log(req.body.data);
+		const buffer = await downloadMediaMessage(req.body.data).catch(() => null);
 		console.log(buffer);
-		res.status(200).json({ base64Image: buffer.toString('base64') });
+		res.status(200).json({ base64Image: buffer?.toString('base64') });
 	}
 }
